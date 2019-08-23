@@ -368,8 +368,7 @@ function bulkArchive() {
 //////////////////////////////////////////////////////////////////////
 //HELPER FUNCTIONS BELOW//
 /////////////////////////////////////////////////////////////////////
-var deliverablesGoogleCalendarUrl =
-  'amida.com_rrvi6lh29rmg0hre6b6opk785g@group.calendar.google.com';
+var deliverablesGoogleCalendarUrl; // IMPORTANT // FOR NOW PLEASE ADD GOOGLE CALENDAR ID HERE AS A STRING (FOUND IN CELL Y2 OF ANY PROJECT SHEET)
 // TODO: Replace with this variable throughout the code.
 var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
   deliverablesGoogleCalendarUrl
