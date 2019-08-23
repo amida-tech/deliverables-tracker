@@ -255,10 +255,12 @@ function bulkArchive() {
 //HELPER FUNCTIONS BELOW////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+var deliverablesGoogleCalendarUrl; // IMPORTANT // FOR NOW PLEASE ADD GOOGLE CALENDAR ID HERE AS A STRING (FOUND IN CELL Y2 OF ANY PROJECT SHEET)
+// TODO: Replace with this variable throughout the code.
+var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
+  deliverablesGoogleCalendarUrl
+);
 var ss = SpreadsheetApp.getActive(); // Active SpreadSheet
-
-
 
 function checkIfAlreadyAdded(alreadyAdded, idField, row) {
   if (idField.getValue()) {
@@ -521,6 +523,9 @@ function getRecipientList(col, employeeInfo) {
 }
 
 function createCalendarEvent(title, date, cal, name) {
+  Logger.log(date);
+  Logger.log('SPACE');
+  Logger.log(cal.toString());
   var ss = SpreadsheetApp.getActive();
   var sheet = ss.getActiveSheet();
   var event = cal.createAllDayEvent('Due to ' + name + ': ' + title, date);
@@ -532,12 +537,6 @@ function createCalendarEvent(title, date, cal, name) {
 }
 
 function addProgramManagerEvent(employeeInfo, deliverableRowData) {
-var deliverablesGoogleCalendarUrl =
-  ss.getActiveSheet().getRange('Y2').getValue();
-// TODO: Replace with this variable throughout the code.
-var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
-  deliverablesGoogleCalendarUrl
-);
   var ss = SpreadsheetApp.getActive();
   var programManagerEvent = createCalendarEvent(
     deliverableRowData.delivName,
@@ -555,12 +554,6 @@ var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
 
 function addEditorEvent(employeeInfo, deliverableRowData) {
   var ss = SpreadsheetApp.getActive();
-  var deliverablesGoogleCalendarUrl =
-  ss.getActiveSheet().getRange('Y2').getValue();
-// TODO: Replace with this variable throughout the code.
-var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
-  deliverablesGoogleCalendarUrl
-);
   var editorEvent = createCalendarEvent(
     deliverableRowData.delivName,
     deliverableRowData.editorDate,
@@ -577,12 +570,6 @@ var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
 
 function addCLevelEvent(employeeInfo, deliverableRowData) {
   var ss = SpreadsheetApp.getActive();
-  var deliverablesGoogleCalendarUrl =
-  ss.getActiveSheet().getRange('Y2').getValue();
-// TODO: Replace with this variable throughout the code.
-var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
-  deliverablesGoogleCalendarUrl
-);
   var cLevelEvent = createCalendarEvent(
     deliverableRowData.delivName,
     deliverableRowData.cLevelDate,
@@ -599,12 +586,6 @@ var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
 
 function addCeoEvent(employeeInfo, deliverableRowData) {
   var ss = SpreadsheetApp.getActive();
-  var deliverablesGoogleCalendarUrl =
-  ss.getActiveSheet().getRange('Y2').getValue();
-// TODO: Replace with this variable throughout the code.
-var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
-  deliverablesGoogleCalendarUrl
-);
   var ceoEvent = createCalendarEvent(
     deliverableRowData.delivName,
     deliverableRowData.ceoDate,
@@ -621,12 +602,6 @@ var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
 
 function addCustomerEvent(deliverableRowData, ss) {
   var ss = SpreadsheetApp.getActive();
-  var deliverablesGoogleCalendarUrl =
-  ss.getActiveSheet().getRange('Y2').getValue();
-// TODO: Replace with this variable throughout the code.
-var deliverablesGoogleCalendar = CalendarApp.getCalendarById(
-  deliverablesGoogleCalendarUrl
-);
   var customerEvent = createCalendarEvent(
     deliverableRowData.delivName,
     deliverableRowData.delivDate,
